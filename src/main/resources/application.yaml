@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/poem_db?useSSL=false&serverTimezone=UTC
+    username: poem
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource # 指定数据源类型为 Druid
+
+    # Druid 数据源配置
+    druid:
+      initial-size: 5 # 初始化连接数
+      min-idle: 5     # 最小空闲连接数
+      max-active: 20  # 最大连接数
+      max-wait: 60000 # 获取连接的最大等待时间（毫秒）
+      time-between-eviction-runs-millis: 60000 # 间隔多久检测一次空闲连接（毫秒）
+      min-evictable-idle-time-millis: 300000   # 连接保持空闲的最小时间（毫秒）
+      validation-query: SELECT 1               # 检测连接是否有效的 SQL
+      test-while-idle: true                    # 空闲时检测连接是否有效
+      test-on-borrow: false                    # 获取连接时检测连接是否有效
+      test-on-return: false                    # 归还连接时检测连接是否有效
+      filters: stat,wall                       # 配置监控统计和防御 SQL 注入的过滤器
+
+      # 监控页面配置
+      stat-view-servlet:
+        enabled: true                          # 启用监控页面
+        url-pattern: /druid/*                  # 监控页面访问路径
+        login-username: admin                  # 监控页面登录用户名
+        login-password: admin                  # 监控页面登录密码
+        reset-enable: false                    # 禁用重置功能
+
+      # Web 应用监控配置
+      web-stat-filter:
+        enabled: true                          # 启用 Web 应用监控
+        url-pattern: /*                        # 监控的 URL 路径
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" # 排除的静态资源
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印 SQL 日志
