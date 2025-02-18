@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>com.loserico</groupId>
-    <artifactId>mybatis-plus-demo</artifactId>
+    <artifactId>mybatisplus-copilot</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0</version>
     <name>mybatis-plus-demo</name>
